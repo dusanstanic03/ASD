@@ -9,11 +9,11 @@ int main(void) {
     create_maticna();
 
     insert_maticna();
-    /*insert_maticna();
-    insert_maticna();*/
-    delete_maticna();
-
+    insert_maticna();
+    //insert_maticna();
+    //delete_maticna();
+    update_maticna();
     select_all_maticna();
-
+    //select_maticna_by_id();
     return 0;
 }

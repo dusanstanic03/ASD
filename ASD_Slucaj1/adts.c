@@ -135,5 +135,94 @@ void delete_maticna(void) {
     printf("INFO: Proizvod je obrisan.\n");
 }
 
+void select_maticna_by_id(void) {
+    FILE* f;
+    PROIZVOD p;
+    unsigned int id;
+    int found = 0;
+
+    printf("Unesite ID proizvoda: ");
+    scanf("%u", &id);
+
+    f = fopen(MAT_DAT, "rb");
+    if (!f) {
+        printf("ERROR: Maticna datoteka ne postoji.\n");
+        return;
+    }
+
+    while (fread(&p, sizeof(PROIZVOD), 1, f) == 1) {
+
+        if (p.Id == id) {
+            printf("\nPRONADJEN PROIZVOD\n");
+            printf("ID: %u\n", p.Id);
+            printf("Naziv: %s\n", p.Naziv);
+            printf("Kolicina: %u\n", p.Kolicina);
+            found = 1;
+            break;
+        }
+
+        if (p.Id > id) {
+            break; 
+        }
+    }
+
+    fclose(f);
+
+    if (!found) {
+        printf("INFO: Proizvod sa ID=%u nije pronadjen.\n", id);
+    }
+}
+
+void update_maticna(void) {
+    FILE* fin, * fout;
+    PROIZVOD p;
+    unsigned int id, nova_kolicina;
+    int found = 0;
+
+    printf("Unesite ID proizvoda za izmenu: ");
+    scanf("%u", &id);
+
+    printf("Unesite novu kolicinu: ");
+    scanf("%u", &nova_kolicina);
+
+    fin = fopen(MAT_DAT, "rb");
+    if (!fin) {
+        printf("ERROR: Maticna datoteka ne postoji.\n");
+        return;
+    }
+
+    fout = fopen(MAT_TMP, "wb");
+    if (!fout) {
+        printf("ERROR: Privremena datoteka se ne moze otvoriti.\n");
+        fclose(fin);
+        return;
+    }
+
+    while (fread(&p, sizeof(PROIZVOD), 1, fin) == 1) {
+
+        if (p.Id == id) {
+            p.Kolicina = nova_kolicina;
+            found = 1;
+        }
+
+        fwrite(&p, sizeof(PROIZVOD), 1, fout);
+    }
+
+    fclose(fin);
+    fclose(fout);
+
+    if (!found) {
+        printf("INFO: Proizvod sa ID=%u ne postoji.\n", id);
+        remove(MAT_TMP);
+        return;
+    }
+
+    remove(MAT_DAT);
+    rename(MAT_TMP, MAT_DAT);
+
+    printf("INFO: Kolicina proizvoda je azurirana.\n");
+}
+
+
 
 
