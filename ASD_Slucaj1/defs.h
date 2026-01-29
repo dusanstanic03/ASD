@@ -21,6 +21,13 @@ typedef struct transakcija {
     unsigned Kolicina;
 } TRANSAKCIJA;
 
+typedef struct {
+    unsigned int Id;
+    int Kolicina;   // + ulaz, - izlaz
+} PROMET;
+
+
 #endif
 
 #define MAT_DAT ".\\ASD\\DATA\\maticna.dat"
+#define PROMET_DAT ".\\ASD\\DATA\\promet.dat"

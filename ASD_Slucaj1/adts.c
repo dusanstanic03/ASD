@@ -223,6 +223,62 @@ void update_maticna(void) {
     printf("INFO: Kolicina proizvoda je azurirana.\n");
 }
 
+void create_promet(void) {
+    FILE* f = fopen(PROMET_DAT, "wb");
+    if (!f) {
+        printf("ERROR: Ne moze da se kreira promet.dat.\n");
+        return;
+    }
+
+    printf("INFO: Promet datoteka je kreirana.\n");
+    fclose(f);
+}
+
+void insert_promet(void) {
+    FILE* f;
+    PROMET pr;
+
+    printf("Unesite ID proizvoda: ");
+    scanf("%u", &pr.Id);
+
+    printf("Unesite kolicinu (pozitivna = ulaz, negativna = izlaz): ");
+    scanf("%d", &pr.Kolicina);
+
+    f = fopen(PROMET_DAT, "ab");
+    if (!f) {
+        printf("ERROR: Promet datoteka ne postoji.\n");
+        return;
+    }
+
+    fwrite(&pr, sizeof(PROMET), 1, f);
+    fclose(f);
+
+    printf("INFO: Promet je upisan.\n");
+}
+
+
+void select_all_promet(void) {
+    FILE* f;
+    PROMET pr;
+
+    f = fopen(PROMET_DAT, "rb");
+    if (!f) {
+        printf("ERROR: Promet datoteka ne postoji.\n");
+        return;
+    }
+
+    printf("\nID   PROMENA\n");
+    printf("-------------\n");
+
+    while (fread(&pr, sizeof(PROMET), 1, f) == 1) {
+        printf("%-4u %+d\n", pr.Id, pr.Kolicina);
+    }
+
+    fclose(f);
+}
+
+
+
 
 
 
