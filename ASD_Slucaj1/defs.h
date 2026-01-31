@@ -1,7 +1,8 @@
 #ifndef DEFS_H
 #define DEFS_H
 #define _CRT_SECURE_NO_WARNINGS
-
+#define MAT_DAT ".\\DATA\\maticna.dat"
+#define PROMET_DAT ".\\DATA\\promet.dat"
 
 
 typedef struct proizvod {
@@ -29,5 +30,4 @@ typedef struct {
 
 #endif
 
-#define MAT_DAT ".\\ASD\\DATA\\maticna.dat"
-#define PROMET_DAT ".\\ASD\\DATA\\promet.dat"
+

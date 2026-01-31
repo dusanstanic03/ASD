@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-#define MAT_TMP ".\\ASD\\DATA\\maticna.tmp"
+#define MAT_TMP ".\\DATA\\maticna.tmp"
 
 void create_maticna(void) {
     FILE* f = fopen(MAT_DAT, "wb");

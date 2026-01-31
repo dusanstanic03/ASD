@@ -4,7 +4,7 @@
 #include "adts.h"
 
 int main(void) {
-    init_asd_folders();
+    
 
     create_maticna();
 
