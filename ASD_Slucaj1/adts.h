@@ -1,7 +1,4 @@
-#ifndef ADTS_H
-#define ADTS_H
-
-#include "defs.h"
+#pragma once
 
 void create_maticna(void);
 void select_all_maticna(void);
@@ -13,8 +10,3 @@ void update_maticna(void);
 void create_promet(void);
 void insert_promet(void);
 void select_all_promet(void);
-
-
-
-
-#endif
